@@ -33,12 +33,8 @@ public class DataBaseQeries {
         return nameList;
     }
      void adduser(String name, int phonenumber,String adresse, int cardnumber ){
-      //  String sql = "Insert into Brugere (name , phone_number , adresse,card_number) VALUES (name , phonenumber , adresse, cardnumber" );
-        Statement stmt  = null;
         try {
             Connection conn = this.connect();
-            stmt = conn.createStatement();
-           // stmt.executeUpdate("INSERT INTO `Brugere`(name,phone_number,adresse,card_number) VALUE ('"+name+"','"+phonenumber+"','"+adresse+"',"+cardnumber+",'"+"')");
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO `Brugere`(name,phone_number,adresse,card_number) VALUES (?, ?, ?, ?)");
             pstmt.setString(1, name);
             pstmt.setInt(2, phonenumber);
@@ -51,10 +47,8 @@ public class DataBaseQeries {
         }
     }
     void movemoney(String til , String fra , int belob){
-        Statement stmt  = null;
         try {
             Connection conn = this.connect();
-            stmt = conn.createStatement();
             PreparedStatement pstmt = conn.prepareStatement("INSERT INTO `Transactions`(til,fra,amount) VALUES (?, ?, ?)");
             pstmt.setString(1, til);
             pstmt.setString(2, fra);
